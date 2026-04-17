@@ -52,7 +52,7 @@ function initMusicAndWelcome() {
 }
 
 // =========================================
-// 3. LOGIKA VIDEO (YOUTUBE API) - BARU!
+// 3. LOGIKA VIDEO (YOUTUBE API) - YANG DIPERBARUI!
 // =========================================
 // Memanggil "mesin" API dari YouTube secara otomatis
 var tag = document.createElement('script');
@@ -61,25 +61,27 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 var player;
-// Fungsi ini akan otomatis dipanggil oleh YouTube setelah mesinnya siap
-function onYouTubeIframeAPIReady() {
+
+// WAJIB menggunakan window. agar terdeteksi secara global oleh Vercel/GitHub
+window.onYouTubeIframeAPIReady = function() {
   player = new YT.Player('introVideo', {
     events: {
       'onStateChange': onPlayerStateChange
     }
   });
-}
+};
 
 // Fungsi ini memantau perubahan status video (Play, Pause, Ended)
 function onPlayerStateChange(event) {
-  // Angka 0 (YT.PlayerState.ENDED) artinya video sudah benar-benar selesai
-  if (event.data === 0) {
+  // YT.PlayerState.ENDED (atau angka 0) artinya video sudah benar-benar selesai
+  if (event.data === YT.PlayerState.ENDED) {
     const choiceContainer = document.getElementById('choiceContainer');
     if (choiceContainer) {
       choiceContainer.classList.remove('hidden');
+      // Beri sedikit jeda untuk animasi smooth
       setTimeout(() => {
         choiceContainer.classList.add('show');
-      }, 10);
+      }, 100);
     }
   }
 }
@@ -147,5 +149,4 @@ document.addEventListener('DOMContentLoaded', () => {
   createFloating();
   initMusicAndWelcome();
   initInteractiveButtons();
-  // Catatan: initVideo() sudah kita hapus dari sini karena YouTube API berjalan secara otomatis.
 });
