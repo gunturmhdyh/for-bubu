@@ -109,7 +109,7 @@ h1 {
 }
 
 /* =========================================
-   5. BAGIAN VIDEO (Diperbarui)
+   5. BAGIAN VIDEO 
    ========================================= */
 .video-section {
     margin: 20px 0;
@@ -119,20 +119,13 @@ h1 {
 }
 
 #introVideo {
-    width: 100%; /* Tetap responsif mengikuti layar */
-    
-    /* PENTING: Batasi ukuran maksimal agar tidak raksasa */
-    max-width: 350px; /* Asumsi videomu berdiri/vertikal. (Ubah ke 600px jika videonya mendatar/landscape) */
-    max-height: 60vh; /* Tinggi maksimal 60% dari layar, agar tombol pilihan di bawahnya nanti tetap muat! */
-    
-    /* Mencegah gepeng */
-    height: auto;
-    object-fit: contain; /* Memastikan seluruh video muat tanpa terpotong atau ditarik */
-    background-color: #000; /* Memberi latar hitam elegan di belakang video jika rasionya tidak pas */
-    
+    width: 100%; 
+    max-width: 350px; /* Batas lebar agar pas seperti layar HP */
+    aspect-ratio: 9 / 16; /* Ini kunci utamanya! Memaksa bingkai menjadi vertikal */
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: none; /* Menghilangkan garis tepi bawaan iframe */
 }
 
 #introVideo:hover {
