@@ -120,12 +120,12 @@ h1 {
 
 #introVideo {
     width: 100%; 
-    max-width: 350px; /* Batas lebar agar pas seperti layar HP */
-    aspect-ratio: 9 / 16; /* Ini kunci utamanya! Memaksa bingkai menjadi vertikal */
+    max-width: 350px; 
+    aspect-ratio: 9 / 16; 
     border-radius: 15px;
     box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: none; /* Menghilangkan garis tepi bawaan iframe */
+    border: none; 
 }
 
 #introVideo:hover {
@@ -181,7 +181,7 @@ h1 {
 /* Responsif untuk HP */
 @media (max-width: 480px) {
     .choice-container {
-        flex-direction: column; /* Tombol jadi atas-bawah di layar kecil */
+        flex-direction: column; 
     }
 }
 /* =========================================
@@ -193,16 +193,16 @@ h1 {
   left: 0;
   width: 100vw;
   height: 100vh;
-  pointer-events: none; /* Memastikan emoji tidak menutupi klik tombol */
-  z-index: 0; /* Ditaruh di lapisan paling belakang */
+  pointer-events: none; 
+  z-index: 0; 
 }
 
 .float {
   position: absolute;
-  bottom: -10vh; /* Mulai dari bawah layar agar tidak tiba-tiba muncul */
+  bottom: -10vh; 
   font-size: 28px;
   opacity: 0.8;
-  animation: floatUp linear infinite; /* Menjalankan animasi terus menerus */
+  animation: floatUp linear infinite; 
 }
 /* Keyframes untuk pergerakan emoji dari bawah ke atas layar */
 @keyframes floatUp {
@@ -211,7 +211,7 @@ h1 {
     opacity: 1;
   }
   100% {
-    transform: translateY(-120vh) rotate(360deg); /* Bergerak ke atas dan berputar */
+    transform: translateY(-120vh) rotate(360deg); 
     opacity: 0;
   }
 }
@@ -229,8 +229,8 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Pastikan selalu berada di lapisan paling depan */
-    transition: opacity 0.8s ease, visibility 0.8s ease; /* Efek menghilang perlahan */
+    z-index: 9999; 
+    transition: opacity 0.8s ease, visibility 0.8s ease; 
 }
 
 .welcome-content {
@@ -240,7 +240,7 @@ h1 {
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     animation: float var(--float-duration) linear infinite;
-    animation: bounce 2s infinite alternate; /* Sedikit animasi naik turun */
+    animation: bounce 2s infinite alternate; 
     font-family: Arial, sans-serif;
 }
 

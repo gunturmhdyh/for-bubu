@@ -19,16 +19,16 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  pointer-events: none; /* Memastikan emoji tidak menutupi klik tombol */
-  z-index: 0; /* Ditaruh di lapisan paling belakang */
+  pointer-events: none; 
+  z-index: 0; 
 }
 
 .float {
   position: absolute;
-  bottom: -10vh; /* Mulai dari bawah layar agar tidak tiba-tiba muncul */
+  bottom: -10vh; 
   font-size: 28px;
   opacity: 0.8;
-  animation: floatUp linear infinite; /* Menjalankan animasi terus menerus */
+  animation: floatUp linear infinite; 
 }
 
 /* Keyframes untuk pergerakan emoji dari bawah ke atas layar */
@@ -38,7 +38,7 @@ body {
     opacity: 1;
   }
   100% {
-    transform: translateY(-120vh) rotate(360deg); /* Bergerak ke atas dan berputar */
+    transform: translateY(-120vh) rotate(360deg); 
     opacity: 0;
   }
 }
@@ -48,7 +48,7 @@ body {
    ========================================= */
 .wrapper {
   position: relative;
-  z-index: 1; /* Berada di depan elemen melayang */
+  z-index: 1; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -78,7 +78,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* Tambahan efek bayangan (glow) agar terlihat menyala di tema gelap */
   box-shadow: 0 0 20px rgba(240, 66, 75, 0.5);
   transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.3s;
   z-index: 2;
@@ -94,7 +93,7 @@ body {
 
 .btn-circle:hover {
   transform: scale(1.1);
-  box-shadow: 0 0 35px rgba(240, 66, 75, 0.8); /* Cahaya makin terang saat kursor mendekat */
+  box-shadow: 0 0 35px rgba(240, 66, 75, 0.8); /
 }
 
 .btn-circle.hide {
@@ -137,14 +136,14 @@ body {
   z-index: 2;
   margin-bottom: -15px; 
   transition: transform 0.3s ease;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); /* Sedikit bayangan di surat */
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.3)); 
 }
 
 .ribbon {
   width: 320px;
   height: 80px;
   background-color: #f0424b;
-  color: white; /* Mengubah teks menjadi putih agar lebih kontras */
+  color: white; 
   font-weight: bold;
   font-size: 18px;
   display: flex;
@@ -152,5 +151,5 @@ body {
   align-items: center;
   clip-path: polygon(0% 0%, 100% 0%, 93% 50%, 100% 100%, 0% 100%, 7% 50%);
   z-index: 1;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Bayangan pita */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); 
 }

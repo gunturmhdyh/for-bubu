@@ -11,34 +11,48 @@ function createFloating() {
     const el = document.createElement('div');
     el.className = 'float'; 
     el.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
-    
     el.style.left = Math.random() * 100 + 'vw';
     el.style.animationDuration = (8 + Math.random() * 10) + 's';
     el.style.animationDelay = Math.random() * 5 + 's';
-    
     container.appendChild(el);
   }
 }
 
 // =========================================
-// 2. LOGIKA MUSIK & LAYAR PEMBUKA
+// 2. LOGIKA MUSIK, LAYAR PEMBUKA, & TIMER TOMBOL
 // =========================================
 function initMusicAndWelcome() {
   const musicToggle = document.getElementById('musicToggle');
   const bgMusic = document.getElementById('bgMusic');
+  const musicSource = document.getElementById('musicSource'); 
   
   const welcomeScreen = document.getElementById('welcomeScreen');
   const btnStart = document.getElementById('btnStart');
   
-  if (musicToggle && bgMusic && welcomeScreen && btnStart) {
-    // Memutar musik saat tombol awal diklik
+  if (musicToggle && bgMusic && welcomeScreen && btnStart && musicSource) {
+    
+    musicSource.src = 'forbubu.mp3'; 
+    bgMusic.load();
+    
+    // Saat tombol "Click Here" dipencet
     btnStart.addEventListener('click', () => {
+      // 1. Putar Musik & Hilangkan Layar
       bgMusic.play();
       musicToggle.textContent = '🔇 Stop Music'; 
       welcomeScreen.classList.add('fade-out');
+
+      const waktuTunggu = 140000; 
+      
+      setTimeout(() => {
+        const choiceContainer = document.getElementById('choiceContainer');
+        if (choiceContainer) {
+          choiceContainer.classList.remove('hidden');
+          setTimeout(() => { choiceContainer.classList.add('show'); }, 50);
+        }
+      }, waktuTunggu);
     });
     
-    // Tombol kontrol musik di pojok
+    // Tombol kontrol musik
     musicToggle.addEventListener('click', () => {
       if (bgMusic.paused) {
         bgMusic.play();
@@ -52,42 +66,7 @@ function initMusicAndWelcome() {
 }
 
 // =========================================
-// 3. LOGIKA VIDEO (YOUTUBE API) - YANG DIPERBARUI!
-// =========================================
-// Memanggil "mesin" API dari YouTube secara otomatis
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-var player;
-
-// WAJIB menggunakan window. agar terdeteksi secara global oleh Vercel/GitHub
-window.onYouTubeIframeAPIReady = function() {
-  player = new YT.Player('introVideo', {
-    events: {
-      'onStateChange': onPlayerStateChange
-    }
-  });
-};
-
-// Fungsi ini memantau perubahan status video (Play, Pause, Ended)
-function onPlayerStateChange(event) {
-  // YT.PlayerState.ENDED (atau angka 0) artinya video sudah benar-benar selesai
-  if (event.data === YT.PlayerState.ENDED) {
-    const choiceContainer = document.getElementById('choiceContainer');
-    if (choiceContainer) {
-      choiceContainer.classList.remove('hidden');
-      // Beri sedikit jeda untuk animasi smooth
-      setTimeout(() => {
-        choiceContainer.classList.add('show');
-      }, 100);
-    }
-  }
-}
-
-// =========================================
-// 4. LOGIKA TOMBOL PILIHAN (YES & NO LUCU)
+// 3. LOGIKA TOMBOL PILIHAN (YES & NO)
 // =========================================
 const messages = [
   "Yooo Bubu Really????",
@@ -110,11 +89,9 @@ function initInteractiveButtons() {
   const nomorWA = "6285780176128"; 
 
   if (btnNo && btnYes) {
-    // JIKA TOMBOL "NO" DIKLIK
     btnNo.addEventListener('click', () => {
       noClickCount++;
 
-      // Jika hitungan mencapai 3, langsung buka WA dengan pesan friendzone
       if (noClickCount === 3) {
         const pesanTolak = "no po, i think we just can be friends only :)";
         const urlWATolak = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesanTolak)}`;
@@ -122,7 +99,6 @@ function initInteractiveButtons() {
         return; 
       }
 
-      // Membesarkan tombol Yes dan mengganti teks tombol No
       btnNo.textContent = messages[messageIndex];
       messageIndex = (messageIndex + 1) % messages.length;
       
@@ -133,7 +109,6 @@ function initInteractiveButtons() {
       btnYes.style.padding = `${currentPadding * 1.2}px ${currentPadding * 2.4}px`;
     });
 
-    // JIKA TOMBOL "YES" DIKLIK
     btnYes.addEventListener('click', () => {
       const pesanTerima = "YAYYYY! I said YES Bebe! Love you too! 💖";
       const urlWATerima = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesanTerima)}`;
@@ -143,7 +118,7 @@ function initInteractiveButtons() {
 }
 
 // =========================================
-// 5. JALANKAN SEMUA SAAT HALAMAN DIMUAT
+// 4. JALANKAN SEMUA SAAT HALAMAN DIMUAT
 // =========================================
 document.addEventListener('DOMContentLoaded', () => {
   createFloating();
