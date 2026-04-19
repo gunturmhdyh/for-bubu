@@ -86,7 +86,7 @@ let noClickCount = 0;
 function initInteractiveButtons() {
   const btnNo = document.getElementById('btnNo');
   const btnYes = document.getElementById('btnYes');
-  const nomorWA = "6285780176128"; 
+  const nomorWA = "6285"; 
 
   if (btnNo && btnYes) {
     btnNo.addEventListener('click', () => {
